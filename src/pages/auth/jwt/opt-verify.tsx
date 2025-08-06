@@ -1,0 +1,21 @@
+import { Helmet } from 'react-helmet-async';
+
+import { CONFIG } from 'src/config-global';
+
+import { OtpVerification } from 'src/sections/auth/jwt/opt-verify';
+
+// ----------------------------------------------------------------------
+
+const metadata = { title: `Sign in | Jwt - ${CONFIG.site.name}` };
+
+export default function Page() {
+    return (
+        <>
+            <Helmet>
+                <title> {metadata.title}</title>
+            </Helmet>
+
+            <OtpVerification />
+        </>
+    );
+}
