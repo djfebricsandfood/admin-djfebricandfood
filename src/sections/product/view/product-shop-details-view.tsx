@@ -20,8 +20,7 @@ import { Iconify } from 'src/components/iconify';
 import { EmptyContent } from 'src/components/empty-content';
 import { CustomBreadcrumbs } from 'src/components/custom-breadcrumbs';
 
-import { CartIcon } from '../components/cart-icon';
-import { useCheckoutContext } from '../../checkout/context';
+// import { useCheckoutContext } from '../../checkout/context';
 import { ProductDetailsSkeleton } from '../product-skeleton';
 import { ProductDetailsReview } from '../product-details-review';
 import { ProductDetailsSummary } from '../product-details-summary';
@@ -93,7 +92,7 @@ export function ProductShopDetailsView({ product, error, loading }: Props) {
 
   return (
     <Container sx={{ mt: 5, mb: 10 }}>
-      <CartIcon totalItems={checkout.totalItems} />
+      {/* <CartIcon totalItems={checkout.totalItems} /> */}
 
       <CustomBreadcrumbs
         links={[
@@ -113,9 +112,9 @@ export function ProductShopDetailsView({ product, error, loading }: Props) {
           {product && (
             <ProductDetailsSummary
               product={product}
-              items={checkout.items}
-              onAddCart={checkout.onAddToCart}
-              onGotoStep={checkout.onGotoStep}
+              // items={checkout.items}
+              // onAddCart={checkout.onAddToCart}
+              // onGotoStep={checkout.onGotoStep}
               disableActions={!product?.available}
             />
           )}

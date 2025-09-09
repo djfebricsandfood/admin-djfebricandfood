@@ -8,13 +8,13 @@ import { SplashScreen } from 'src/components/loading-screen';
 
 // ----------------------------------------------------------------------
 
-const FaqsPage = lazy(() => import('src/pages/faqs'));
+// const FaqsPage = lazy(() => import('src/pages/faqs'));
 const AboutPage = lazy(() => import('src/pages/about-us'));
 const ContactPage = lazy(() => import('src/pages/contact-us'));
 const PricingPage = lazy(() => import('src/pages/pricing'));
-const PaymentPage = lazy(() => import('src/pages/payment'));
+// const PaymentPage = lazy(() => import('src/pages/payment'));
 const ComingSoonPage = lazy(() => import('src/pages/coming-soon'));
-const MaintenancePage = lazy(() => import('src/pages/maintenance'));
+// const MaintenancePage = lazy(() => import('src/pages/maintenance'));
 // Product
 const ProductListPage = lazy(() => import('src/pages/product/list'));
 const ProductDetailsPage = lazy(() => import('src/pages/product/details'));
@@ -54,10 +54,10 @@ export const mainRoutes = [
             path: 'contact-us',
             element: <ContactPage />,
           },
-          {
-            path: 'faqs',
-            element: <FaqsPage />,
-          },
+          // {
+          //   path: 'faqs',
+          //   element: <FaqsPage />,
+          // },
           {
             path: 'blank',
             element: <BlankPage />,
@@ -89,14 +89,14 @@ export const mainRoutes = [
           </SimpleLayout>
         ),
       },
-      {
-        path: 'payment',
-        element: (
-          <SimpleLayout>
-            <PaymentPage />
-          </SimpleLayout>
-        ),
-      },
+      // {
+      //   path: 'payment',
+      //   element: (
+      //     <SimpleLayout>
+      //       <PaymentPage />
+      //     </SimpleLayout>
+      //   ),
+      // },
       {
         path: 'coming-soon',
         element: (
@@ -105,14 +105,14 @@ export const mainRoutes = [
           </SimpleLayout>
         ),
       },
-      {
-        path: 'maintenance',
-        element: (
-          <SimpleLayout content={{ compact: true }}>
-            <MaintenancePage />
-          </SimpleLayout>
-        ),
-      },
+      // {
+      //   path: 'maintenance',
+      //   element: (
+      //     <SimpleLayout content={{ compact: true }}>
+      //       <MaintenancePage />
+      //     </SimpleLayout>
+      //   ),
+      // },
       { path: '500', element: <Page500 /> },
       { path: '404', element: <Page404 /> },
       { path: '403', element: <Page403 /> },
