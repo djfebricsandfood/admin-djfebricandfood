@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 
 import { CONFIG } from 'src/config-global';
 
-import { CheckoutView } from 'src/sections/checkout/view';
+// import { CheckoutView } from 'src/sections/checkout/view';
 
 // ----------------------------------------------------------------------
 
@@ -15,7 +15,7 @@ export default function Page() {
         <title> {metadata.title}</title>
       </Helmet>
 
-      <CheckoutView />
+      {/* <CheckoutView /> */}
     </>
   );
 }

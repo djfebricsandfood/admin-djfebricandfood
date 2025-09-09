@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 
 import { CONFIG } from 'src/config-global';
 
-import { ChatView } from 'src/sections/chat/view';
+// import { ChatView } from 'src/sections/chat/view';
 
 // ----------------------------------------------------------------------
 
@@ -15,7 +15,7 @@ export default function Page() {
         <title> {metadata.title}</title>
       </Helmet>
 
-      <ChatView />
+      {/* <ChatView /> */}
     </>
   );
 }

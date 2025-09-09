@@ -56,7 +56,7 @@ const BlogEditPostPage = lazy(() => import('src/pages/dashboard/post/edit'));
 // const TourCreatePage = lazy(() => import('src/pages/dashboard/tour/new'));
 // const TourEditPage = lazy(() => import('src/pages/dashboard/tour/edit'));
 // File manager
-const FileManagerPage = lazy(() => import('src/pages/dashboard/file-manager'));
+// const FileManagerPage = lazy(() => import('src/pages/dashboard/file-manager'));
 // App
 const ChatPage = lazy(() => import('src/pages/dashboard/chat'));
 const MailPage = lazy(() => import('src/pages/dashboard/mail'));
@@ -165,7 +165,7 @@ export const dashboardRoutes = [
       //     { path: ':id/edit', element: <TourEditPage /> },
       //   ],
       // },
-      { path: 'file-manager', element: <FileManagerPage /> },
+      // { path: 'file-manager', element: <FileManagerPage /> },
       { path: 'mail', element: <MailPage /> },
       { path: 'chat', element: <ChatPage /> },
       { path: 'calendar', element: <CalendarPage /> },
