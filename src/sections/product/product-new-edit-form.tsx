@@ -8,6 +8,7 @@ import { useMemo, useState, useEffect, useCallback } from 'react';
 
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
+import { MenuItem } from '@mui/material';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import CardHeader from '@mui/material/CardHeader';
@@ -16,6 +17,8 @@ import IconButton from '@mui/material/IconButton';
 
 import { paths } from 'src/routes/paths';
 import { useRouter } from 'src/routes/hooks';
+
+import { imgUrl } from 'src/utils/BaseUrls';
 
 import { toast } from 'src/components/snackbar';
 import { Form, Field, schemaHelper } from 'src/components/hook-form';
@@ -40,14 +43,15 @@ const SubProductSchema = zod.object({
   image: schemaHelper.file({ message: { required_error: 'Sub-product image is required!' } }),
 });
 
-export type NewProductSchemaType = zod.infer<typeof NewProductSchema>;
-
 export const NewProductSchema = zod.object({
   name: zod.string().min(1, { message: 'Name is required!' }),
+  category: zod.string().min(1, { message: 'Category is required!' }), // Added category to schema
   description: schemaHelper.editor({ message: { required_error: 'Description is required!' } }),
   images: schemaHelper.files({ message: { required_error: 'Images is required!' } }),
   subProducts: zod.array(SubProductSchema).optional(),
 });
+
+export type NewProductSchemaType = zod.infer<typeof NewProductSchema>;
 
 // ----------------------------------------------------------------------
 
@@ -55,24 +59,22 @@ type Props = {
   currentProduct?: IProductItem;
 };
 
-
 export function ProductNewEditForm({ currentProduct }: Props) {
   const router = useRouter();
 
-
   console.log(currentProduct, "this is current product ");
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const [setIsSubmitting] = useState(false);
-
-  const imageUri = "http://localhost:5000"
+  const imageUri = "https://djfabricsandfood.com"
 
   const defaultValues = useMemo(
     () => ({
       name: currentProduct?.name || '',
+      category: currentProduct?.category || '', // Added category default value
       description: currentProduct?.description || '',
       subDescription: currentProduct?.subDescription || '',
-      images: currentProduct?.images?.map(img => `${imageUri}/${img}`) || [],
+      images: currentProduct?.images?.map(img => `${imgUrl}/${img}`) || [],
       subProducts: currentProduct?.subProducts?.map((sub) => ({
         ...sub,
         image: sub.image ? `${imageUri}/${sub.image}` : '',
@@ -86,9 +88,8 @@ export function ProductNewEditForm({ currentProduct }: Props) {
     defaultValues,
   });
 
-
   const { id } = useParams()
-  console.log("Product ID:", imageUri);
+  console.log("Product ID:", id); // Fixed console.log to show actual id instead of imageUri
 
   const {
     reset,
@@ -149,9 +150,9 @@ export function ProductNewEditForm({ currentProduct }: Props) {
   const onSubmit = async (data: NewProductSchemaType) => {
     setIsSubmitting(true);
     try {
-
       const formData = new FormData();
       formData.append('name', data.name);
+      formData.append('category', data.category); // Added category to form submission
       formData.append('description', data.description);
       formData.append('id', id);
 
@@ -174,20 +175,15 @@ export function ProductNewEditForm({ currentProduct }: Props) {
 
       if (id) {
         update(formData).then(() => {
-
+          toast.success('Update success!'); // Added success message for update
           router.push(paths.dashboard.product.root);
         })
-
-
       } else {
         mutateAsync(formData).then(() => {
-          toast.success(currentProduct ? 'Update success!' : 'Create success!');
+          toast.success('Create success!'); // Fixed success message logic
           router.push(paths.dashboard.product.root);
         })
       }
-
-
-
 
     } catch (error) {
       console.error('Submission error:', error);
@@ -203,6 +199,12 @@ export function ProductNewEditForm({ currentProduct }: Props) {
       <Divider />
       <Stack spacing={3} sx={{ p: 3 }}>
         <Field.Text name="name" label="Product name" />
+
+        <Field.Select name="category" label="Category" fullWidth>
+          <MenuItem value="fabrics">Fabrics</MenuItem>
+          <MenuItem value="fruits-vegetables">Fruits & Vegetables</MenuItem>
+          <MenuItem value="snacks">Snacks</MenuItem>
+        </Field.Select>
 
         <Stack spacing={1.5}>
           <Typography variant="subtitle2">Content</Typography>

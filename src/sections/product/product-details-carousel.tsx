@@ -4,6 +4,8 @@ import { useEffect } from 'react';
 
 import Box from '@mui/material/Box';
 
+import { imgUrl } from 'src/utils/BaseUrls';
+
 import { Image } from 'src/components/image';
 import { Lightbox, useLightBox } from 'src/components/lightbox';
 import {
@@ -37,7 +39,9 @@ export function ProductDetailsCarousel({ images }: Props) {
     }
   }, [carousel.mainApi, lightbox.open, lightbox.selected]);
 
-  // const imageUri = process.env.VITE_IMAGE_URI
+
+
+  console.log(slides);
 
   return (
     <>
@@ -56,7 +60,7 @@ export function ProductDetailsCarousel({ images }: Props) {
               <Image
                 key={slide.src}
                 alt={slide.src}
-                src={`http://localhost:5000/${slide.src}`}
+                src={`${imgUrl}/${slide.src}`}
                 ratio="1/1"
                 onClick={() => lightbox.onOpen(slide.src)}
                 sx={{ cursor: 'zoom-in', minWidth: 320 }}
@@ -75,7 +79,7 @@ export function ProductDetailsCarousel({ images }: Props) {
             <CarouselThumb
               key={item.src}
               index={index}
-              src={`http://localhost:5000/${item.src}`}
+              src={`${imgUrl}/${item.src}`}
               selected={index === carousel.thumbs.selectedIndex}
               onClick={() => carousel.thumbs.onClickThumb(index)}
             />

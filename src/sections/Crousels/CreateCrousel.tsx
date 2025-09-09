@@ -24,6 +24,8 @@ import {
   CircularProgress
 } from '@mui/material';
 
+import { imgUrl } from 'src/utils/BaseUrls';
+
 import { LoadingScreen } from 'src/components/loading-screen';
 
 import useCreateCrousel from './http/useCreateCrousel';
@@ -533,7 +535,7 @@ const CarouselManagement = () => {
                       }}
                     >
                       <img
-                        src={`http://localhost:5000/${carousel.backgroundImage}`}
+                        src={`${imgUrl}/${carousel.backgroundImage}`}
                         alt={carousel.name || 'Carousel background'}
                         style={{
                           position: 'absolute',
@@ -544,7 +546,7 @@ const CarouselManagement = () => {
                           objectFit: 'cover',
                         }}
                         onError={(e) => {
-                          console.error('Image failed to load:', `http://localhost:5000/${carousel.backgroundImage}`);
+                          console.error('Image failed to load:', `${imgUrl}/${carousel.backgroundImage}`);
                           e.target.style.display = 'none';
                         }}
                       />
